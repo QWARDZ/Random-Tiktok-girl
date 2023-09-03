@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random tiktok girl Video Generator</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #222;
+      color: #fff;
+    }
+
+    .top-bar {
+      width: 100%;
+      background-color: #333;
+      padding: 10px;
+      text-align: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    .top-bar h1 {
+      margin: 0;
+      font-family: 'pacifico', cursive;
+      font-size: 24px;
+      color: #fff;
+    }
+
+    button, a.button {
+      font-family: 'pacifico', cursive;
+      font-size: 18px;
+      padding: 12px 20px;
+      border-radius: 20px; 
+      background-color: #fff;
+      color: black;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      border: 5px solid rgba(255, 255, 255, 0.7);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+      margin-top: 20px;
+      text-decoration: none;
+    }
+
+    button:hover, a.button:hover {
+      background-color: #fff;
+      border: 5px solid rgba(255, 255, 255, 0.7);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+    }
+
+    #myVideo {
+      display: none;
+      border: 5px solid rgba(255, 255, 255, 0.7);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+      max-width: 100%;
+      width: 70%;
+      max-height: 50vh;
+      filter: brightness(150%);
+      border-radius: 10px; 
+    }
+
+    body.dark-mode {
+      background-color: #111;
+      color: #fff;
+    }
+
+    #myVideo.dark-mode {
+      border-color: rgba(255, 255, 255, 0.7);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+    }
+
+    @media (max-width: 600px) {
+      button, a.button {
+        font-size: 14px;
+        padding: 10px 16px;
+      }
+
+      #myVideo {
+        width: 90%;
+      }
+    }
+  </style>
+  <script>
+    function loadVideo() {
+  const loadButton = document.getElementById('loadButton');
+  loadButton.disabled = true;
+  loadButton.textContent = 'Loading...';
+
+  fetch('https://shoti-api.libyzxy0.repl.co/api/get-shoti?apikey=shoti-1h8jdbback0i8csm13g')
+    .then(response => response.json())
+    .then(data => {
+      const videoUrl = data.data.url;
+      const videoElement = document.getElementById('myVideo');
+      videoElement.src = videoUrl;
+      videoElement.style.display = 'block';
+
+      const redirectButton = document.getElementById('redirectButton');
+      const regenerateButton = document.getElementById('regenerateButton');
+      redirectButton.style.display = 'block';
+      regenerateButton.style.display = 'block';
+      loadButton.disabled = false;
+      loadButton.textContent = 'Generate Random Shoty Videos';
+
+      const tiktokUrl = data.data.tiktok_url;
+          redirectButton.href = tiktokUrl;
+      regenerateButton.onclick = loadVideo;
+    })
+    .catch(error => {
+      console.log('Error:', error);
+      loadButton.disabled = false;
+      loadButton.textContent = 'Regenerate Random tiktok girl Videos';
+    });
+}
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+      const videoElement = document.getElementById('myVideo');
+      videoElement.classList.toggle('dark-mode');
+    }
+  </script>
+</head>
+<body>
+  </div>
+  <br>
+  <button id="loadButton" onclick="loadVideo()">click</button>
+  <br>
+  <video id="myVideo" controls autoplay>
+    Your browser does not support the video tag.
+  </video>
+  <br>
+<a id="redirectButton" class="button" style="display: none" target="_blank">Made By Edwardhack</a>
+</body>
+</html>
